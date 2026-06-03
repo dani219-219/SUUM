@@ -21,8 +21,8 @@ export class WorkerDetail {
         this.container = container;
         this.workerId = workerId;
         this.unsubscribe = null;
-        this.heartRateMonitor = null;  // 심박수 모니터 인스턴스
-        this.temperatureMonitor = null; // 체온 모니터 인스턴스
+        this.activeMonitor = null; // 현재 열려있는 모니터 인스턴스 (모달용)
+        this.handleShowSensorModal = this.handleShowSensorModal.bind(this);
     }
 
     /**
@@ -114,18 +114,8 @@ export class WorkerDetail {
                         ${HealthPanel.render(worker)}
                     </div>
                     
-                    <!-- 센서 모니터 (Apple Watch 스타일) -->
-                    <div class="mt-lg sensor-monitors-grid">
-                        <div id="heartRateMonitorContainer">
-                            <!-- HeartRateMonitor가 비동기로 렌더링됩니다 -->
-                        </div>
-                        <div id="temperatureMonitorContainer">
-                            <!-- TemperatureMonitor가 비동기로 렌더링됩니다 -->
-                        </div>
-                    </div>
-                    
                     <!-- 상태 및 권장 조치 -->
-                    <div class="mt-lg" style="background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); padding: var(--spacing-lg);">
+                    <div class="mt-lg" style="background: var(--theme-card-bg); border-radius: var(--radius-lg); border: 1px solid var(--theme-card-border); padding: var(--spacing-lg); box-shadow: var(--theme-shadow-sm);">
                         <div style="display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-md);">
                             <span style="font-size: var(--font-size-2xl);">${statusIcon[worker.status]}</span>
                             <div>
@@ -134,52 +124,97 @@ export class WorkerDetail {
                                 </div>
                             </div>
                         </div>
-                        <div style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md);">
-                            <div style="font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: var(--spacing-xs);">
+                        <div style="padding: var(--spacing-md); background: var(--theme-bg-tertiary); border-radius: var(--radius-md); border: 1px solid var(--theme-card-border);">
+                            <div style="font-size: var(--font-size-sm); color: var(--theme-text-muted); margin-bottom: var(--spacing-xs);">
                                 권장 조치
                             </div>
-                            <div style="color: var(--text-secondary);">
+                            <div style="color: var(--theme-text-secondary);">
                                 ${recommendations[worker.status]}
                             </div>
                         </div>
                     </div>
                 </main>
+
+                <!-- 센서 팝업 모달 -->
+                <div class="modal-overlay" id="sensorModalOverlay">
+                    <div class="modal">
+                        <div class="modal__header">
+                            <h3 class="modal__title" id="sensorModalTitle">센서 상세 정보</h3>
+                            <button class="modal__close" id="closeSensorModal">✕</button>
+                        </div>
+                        <div class="modal__body" id="sensorModalBody">
+                            <!-- 동적 렌더링 -->
+                        </div>
+                    </div>
+                </div>
             </div>
         `;
 
         this.startClock();
 
-        // 센서 모니터 비동기 초기화 (기존 로직과 독립적)
-        this.initSensorMonitors(worker);
+        // 모달 이벤트 리스너 등록
+        window.addEventListener('showSensorModal', this.handleShowSensorModal);
+        
+        const closeBtn = this.container.querySelector('#closeSensorModal');
+        const overlay = this.container.querySelector('#sensorModalOverlay');
+        
+        const closeModal = () => {
+            overlay.classList.remove('modal-overlay--visible');
+            if (this.activeMonitor) {
+                this.activeMonitor.destroy();
+                this.activeMonitor = null;
+            }
+            this.container.querySelector('#sensorModalBody').innerHTML = '';
+        };
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (overlay) {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeModal();
+            });
+        }
     }
 
     /**
-     * 센서 모니터 초기화 (심박수 + 체온)
-     * 기존 workerDataService 로직과 완전히 분리된 독립 비동기 작업
+     * 센서 모달 띄우기
      */
-    async initSensorMonitors(worker) {
-        const helmetId = worker.helmetId || 1;
+    async handleShowSensorModal(e) {
+        const type = e.detail.type;
+        const worker = workerDataService.getById(this.workerId);
+        if (!worker) return;
 
-        // 심박수 모니터 초기화
-        try {
-            const hrContainer = this.container.querySelector('#heartRateMonitorContainer');
-            if (hrContainer) {
-                this.heartRateMonitor = new HeartRateMonitor(hrContainer, worker.id, helmetId);
-                await this.heartRateMonitor.init();
-            }
-        } catch (e) {
-            console.error('[WorkerDetail] 심박수 모니터 초기화 실패:', e);
+        const overlay = this.container.querySelector('#sensorModalOverlay');
+        const modalTitle = this.container.querySelector('#sensorModalTitle');
+        const modalBody = this.container.querySelector('#sensorModalBody');
+        
+        if (!overlay || !modalTitle || !modalBody) return;
+
+        // 기존 모니터 정리
+        if (this.activeMonitor) {
+            this.activeMonitor.destroy();
+            this.activeMonitor = null;
         }
 
-        // 체온 모니터 초기화
-        try {
-            const tmpContainer = this.container.querySelector('#temperatureMonitorContainer');
-            if (tmpContainer) {
-                this.temperatureMonitor = new TemperatureMonitor(tmpContainer, worker.id, helmetId);
-                await this.temperatureMonitor.init();
+        modalBody.innerHTML = ''; // 초기화
+        overlay.classList.add('modal-overlay--visible');
+
+        const helmetId = worker.helmetId || 1;
+
+        if (type === 'temperature') {
+            modalTitle.textContent = '체온 상세 기록';
+            this.activeMonitor = new TemperatureMonitor(modalBody, worker.id, helmetId);
+        } else if (type === 'heartRate') {
+            modalTitle.textContent = '심박수 상세 기록';
+            this.activeMonitor = new HeartRateMonitor(modalBody, worker.id, helmetId);
+        }
+
+        if (this.activeMonitor) {
+            try {
+                await this.activeMonitor.init();
+            } catch (error) {
+                console.error('[WorkerDetail] 모니터 초기화 실패:', error);
+                modalBody.innerHTML = '<p style="color: #FF3B30;">센서 데이터를 불러오는 데 실패했습니다.</p>';
             }
-        } catch (e) {
-            console.error('[WorkerDetail] 체온 모니터 초기화 실패:', e);
         }
     }
 
@@ -226,14 +261,13 @@ export class WorkerDetail {
         if (this.clockInterval) {
             clearInterval(this.clockInterval);
         }
-        // 센서 모니터 정리 (인터벌 해제)
-        if (this.heartRateMonitor) {
-            this.heartRateMonitor.destroy();
-            this.heartRateMonitor = null;
-        }
-        if (this.temperatureMonitor) {
-            this.temperatureMonitor.destroy();
-            this.temperatureMonitor = null;
+        
+        window.removeEventListener('showSensorModal', this.handleShowSensorModal);
+
+        // 센서 모니터 정리
+        if (this.activeMonitor) {
+            this.activeMonitor.destroy();
+            this.activeMonitor = null;
         }
     }
 }

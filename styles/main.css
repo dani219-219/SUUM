@@ -63,9 +63,9 @@ body {
     left: 0;
     right: 0;
     height: var(--header-height);
-    background: #1F1F1F;
-    backdrop-filter: none;
-    border-bottom: 1px solid rgba(85, 102, 136, 0.2);
+    background: var(--theme-bg-primary);
+    backdrop-filter: var(--theme-glass-blur, none);
+    border-bottom: 1px solid var(--theme-card-border);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     z-index: 100;
     display: flex;
@@ -90,7 +90,7 @@ body {
     gap: var(--spacing-sm);
     font-size: var(--font-size-xl);
     font-weight: 700;
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
 }
 
 .app-header__logo-icon {
@@ -107,7 +107,7 @@ body {
 .app-header__time {
     font-family: var(--font-family-mono);
     font-size: var(--font-size-sm);
-    color: #A0A0A0;
+    color: var(--theme-text-secondary);
 }
 
 .app-header__user {
@@ -121,12 +121,12 @@ body {
 .app-header__user-name {
     font-size: var(--font-size-sm);
     font-weight: 600;
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
 }
 
 .app-header__user-role {
     font-size: var(--font-size-xs);
-    color: #707070;
+    color: var(--theme-text-muted);
 }
 
 .btn--logout {
@@ -206,7 +206,7 @@ body {
 
 .btn--primary {
     background: #556688;
-    color: #F0F0D0;
+    color: var(--theme-btn-text, #FFFFFF);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -219,30 +219,30 @@ body {
 .btn--outline {
     border: 1px solid rgba(85, 102, 136, 0.4);
     background: transparent;
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
     box-shadow: none;
 }
 
 .btn--outline:hover {
     border-color: #556688;
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
     background: rgba(85, 102, 136, 0.15);
     transform: translateY(-1px);
 }
 
 .btn--back {
-    color: #A0A0A0;
+    color: var(--theme-text-secondary);
 }
 
 .btn--back:hover {
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
 }
 
 /* ========== 섹션 타이틀 ========== */
 .section-title {
     font-size: var(--font-size-2xl);
     font-weight: 700;
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
     margin-bottom: var(--spacing-lg);
     display: flex;
     align-items: center;
@@ -260,11 +260,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #1F1F1F;
+    background: var(--theme-bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #3A3A3A;
+    background: var(--theme-bg-tertiary);
     border-radius: var(--radius-full);
 }
 

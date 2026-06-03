@@ -28,6 +28,7 @@
  */
 
 import { sensorDataService } from '../services/sensorData.js';
+import { workerDataService } from '../services/workerData.js';
 
 export class HeartRateMonitor {
     /**
@@ -93,6 +94,11 @@ export class HeartRateMonitor {
             this.currentBPM = (latest && latest.heartRate !== null && !isNaN(latest.heartRate))
                 ? latest.heartRate
                 : null;
+
+            // 모달에 로드된 실제 센서 데이터를 배경(대시보드) 화면에도 동기화
+            if (this.currentBPM !== null) {
+                workerDataService.updateWorkerVitals(this.workerId, null, this.currentBPM);
+            }
 
             // 기록 데이터 저장
             this.historyData = history || [];

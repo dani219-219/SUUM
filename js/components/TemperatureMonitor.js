@@ -28,6 +28,7 @@
  */
 
 import { sensorDataService } from '../services/sensorData.js';
+import { workerDataService } from '../services/workerData.js';
 
 export class TemperatureMonitor {
     /**
@@ -93,6 +94,11 @@ export class TemperatureMonitor {
             this.currentTemp = (latest && latest.temperature !== null && !isNaN(latest.temperature))
                 ? latest.temperature
                 : null;
+
+            // 모달에 로드된 실제 센서 데이터를 배경(대시보드) 화면에도 동기화
+            if (this.currentTemp !== null) {
+                workerDataService.updateWorkerVitals(this.workerId, this.currentTemp, null);
+            }
 
             // 기록 데이터 저장
             this.historyData = history || [];

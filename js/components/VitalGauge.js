@@ -8,30 +8,17 @@
  */
 
 export class VitalGauge {
-    /**
-     * 체온 게이지 렌더링
-     * @param {number} temperature - 체온
-     * @param {string} status - 상태 (normal, warning, danger)
-     */
     static renderTemperature(temperature, status) {
-        // 36~40도 범위를 0~100%로 변환
-        const percentage = Math.min(100, Math.max(0, ((temperature - 36) / 4) * 100));
-        const dashOffset = 440 - (440 * percentage / 100);
-
+        // 데이터가 없으면 0으로 처리
+        const safeTemp = (temperature !== null && temperature !== undefined && !isNaN(temperature)) ? temperature : 0;
+        
         return `
-            <div class="vital-gauge vital-gauge--${status}">
-                <div class="vital-gauge__circle">
-                    <svg class="vital-gauge__svg" viewBox="0 0 160 160">
-                        <circle class="vital-gauge__bg" cx="80" cy="80" r="70" />
-                        <circle class="vital-gauge__progress" cx="80" cy="80" r="70" 
-                            style="stroke-dashoffset: ${dashOffset}" />
-                    </svg>
-                    <div class="vital-gauge__value">
-                        <div class="vital-gauge__number">${temperature.toFixed(1)}</div>
-                        <div class="vital-gauge__unit">°C</div>
-                    </div>
+            <div class="vital-gauge vital-gauge--${status}" onclick="window.dispatchEvent(new CustomEvent('showSensorModal', {detail: {type: 'temperature'}}))">
+                <div class="vital-card__value">
+                    ${safeTemp === 0 ? '0' : safeTemp.toFixed(1)}
+                    <span class="vital-card__unit">°C</span>
                 </div>
-                <div class="vital-gauge__label">
+                <div class="vital-card__label">
                     <span class="vital-gauge__icon">🌡️</span>
                     체온
                 </div>
@@ -39,30 +26,17 @@ export class VitalGauge {
         `;
     }
 
-    /**
-     * 심박수 게이지 렌더링
-     * @param {number} heartRate - 심박수
-     * @param {string} status - 상태
-     */
     static renderHeartRate(heartRate, status) {
-        // 60~140 bpm 범위를 0~100%로 변환
-        const percentage = Math.min(100, Math.max(0, ((heartRate - 60) / 80) * 100));
-        const dashOffset = 440 - (440 * percentage / 100);
-
+        // 데이터가 없으면 0으로 처리
+        const safeHR = (heartRate !== null && heartRate !== undefined && !isNaN(heartRate)) ? heartRate : 0;
+        
         return `
-            <div class="vital-gauge vital-gauge--${status}">
-                <div class="vital-gauge__circle">
-                    <svg class="vital-gauge__svg" viewBox="0 0 160 160">
-                        <circle class="vital-gauge__bg" cx="80" cy="80" r="70" />
-                        <circle class="vital-gauge__progress" cx="80" cy="80" r="70" 
-                            style="stroke-dashoffset: ${dashOffset}" />
-                    </svg>
-                    <div class="vital-gauge__value">
-                        <div class="vital-gauge__number">${heartRate}</div>
-                        <div class="vital-gauge__unit">bpm</div>
-                    </div>
+            <div class="vital-gauge vital-gauge--${status}" onclick="window.dispatchEvent(new CustomEvent('showSensorModal', {detail: {type: 'heartRate'}}))">
+                <div class="vital-card__value">
+                    ${safeHR}
+                    <span class="vital-card__unit">bpm</span>
                 </div>
-                <div class="vital-gauge__label">
+                <div class="vital-card__label">
                     <span class="vital-gauge__icon">❤️</span>
                     심박수
                 </div>

@@ -9,16 +9,17 @@
 
 /* 건강 정보 패널 - 플랫 */
 .health-panel {
-    background: #2A2A2A;
+    background: var(--theme-card-bg);
     border-radius: 8px;
-    border: 1px solid rgba(85, 102, 136, 0.2);
+    border: 1px solid var(--theme-card-border);
     padding: var(--spacing-lg);
+    backdrop-filter: var(--theme-glass-blur, none);
 }
 
 .health-panel__title {
     font-size: var(--font-size-lg);
     font-weight: 600;
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
     margin-bottom: var(--spacing-lg);
     display: flex;
     align-items: center;
@@ -51,7 +52,7 @@
 
 .health-item__label {
     font-size: var(--font-size-xs);
-    color: #707070;
+    color: var(--theme-text-secondary);
     margin-bottom: var(--spacing-xs);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -60,7 +61,7 @@
 .health-item__value {
     font-size: var(--font-size-lg);
     font-weight: 600;
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
 }
 
 /* 혈액형 특별 스타일 - 무광 레드 */
@@ -146,5 +147,5 @@
 
 .health-warning__message {
     font-size: var(--font-size-sm);
-    color: #A0A0A0;
+    color: var(--theme-text-secondary);
 }

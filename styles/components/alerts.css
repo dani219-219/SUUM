@@ -13,10 +13,10 @@
     align-items: center;
     gap: var(--spacing-md);
     padding: var(--spacing-md) var(--spacing-lg);
-    background: #2A2A2A;
-    backdrop-filter: none;
+    background: var(--theme-card-bg);
+    backdrop-filter: var(--theme-glass-blur, none);
     border-radius: 8px;
-    border: 1px solid rgba(85, 102, 136, 0.2);
+    border: 1px solid var(--theme-card-border);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     margin-bottom: var(--spacing-lg);
     animation: slide-in 0.3s ease;
@@ -42,13 +42,13 @@
 
 .alert-banner__title {
     font-weight: 600;
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
     margin-bottom: var(--spacing-xs);
 }
 
 .alert-banner__message {
     font-size: var(--font-size-sm);
-    color: #A0A0A0;
+    color: var(--theme-text-secondary);
 }
 
 .alert-banner__count {
@@ -90,7 +90,7 @@
     align-items: center;
     padding: 0 var(--spacing-md);
     background: #6B2A2A;
-    color: #F0F0D0;
+    color: #FFFFFF;
     font-size: var(--font-size-sm);
     font-weight: 700;
     border-radius: 8px 0 0 8px;
@@ -109,12 +109,12 @@
     align-items: center;
     gap: var(--spacing-md);
     padding: 0 var(--spacing-xl);
-    color: #F0F0D0;
+    color: #FFFFFF;
     font-size: var(--font-size-sm);
 }
 
 .disaster-alert__icon {
-    color: #F0F0D0;
+    color: #FFFFFF;
 }
 
 /* 날씨 위젯 - 플랫 */
@@ -123,10 +123,10 @@
     align-items: center;
     gap: var(--spacing-lg);
     padding: var(--spacing-lg) var(--spacing-2xl);
-    background: #2A2A2A;
-    backdrop-filter: none;
+    background: var(--theme-card-bg);
+    backdrop-filter: var(--theme-glass-blur, none);
     border-radius: 8px;
-    border: 1px solid rgba(85, 102, 136, 0.2);
+    border: 1px solid var(--theme-card-border);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     margin-bottom: var(--spacing-lg);
     transition: all 0.2s ease;
@@ -135,7 +135,7 @@
 .weather-widget:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    background: #333333;
+    background: var(--theme-bg-tertiary);
 }
 
 .weather-widget__temp {
@@ -148,13 +148,13 @@
     font-size: var(--font-size-4xl);
     font-weight: 800;
     font-family: var(--font-family-mono);
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
     line-height: 1;
 }
 
 .weather-widget__temp-unit {
     font-size: var(--font-size-xl);
-    color: #A0A0A0;
+    color: var(--theme-text-secondary);
     font-weight: 600;
 }
 
@@ -169,7 +169,7 @@
     align-items: center;
     gap: var(--spacing-sm);
     font-size: var(--font-size-sm);
-    color: #A0A0A0;
+    color: var(--theme-text-secondary);
 }
 
 .weather-widget__status {

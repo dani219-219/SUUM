@@ -23,6 +23,9 @@
     --theme-card-bg: #2A2A2A;
     --theme-card-border: rgba(85, 102, 136, 0.2);
 
+    /* 로고 필터 (다크모드용 반전) */
+    --theme-logo-filter: invert(1) brightness(2);
+
     /* 텍스트 색상 - 오프화이트/베이지 */
     --theme-text-primary: #F0F0D0;
     --theme-text-secondary: #A0A0A0;
@@ -66,6 +69,9 @@
     /* 카드 배경 - 젤리 글래스모피즘 */
     --theme-card-bg: rgba(255, 255, 255, 0.55);
     --theme-card-border: rgba(255, 255, 255, 0.9);
+
+    /* 로고 필터 (라이트모드 원본) */
+    --theme-logo-filter: none;
 
     /* 텍스트 색상 - 어두운 남색 (#0D2750) 가독성 극대화 */
     --theme-text-primary: #0d2750;

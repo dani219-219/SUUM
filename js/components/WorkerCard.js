@@ -67,11 +67,11 @@ export class WorkerCard {
                     </div>
                     <div class="worker-card__vitals">
                         <div class="worker-card__vital">
-                            <div class="worker-card__vital-value">${worker.temperature.toFixed(1)}°</div>
+                            <div class="worker-card__vital-value">${(worker.temperature || 0).toFixed(1)}°</div>
                             <div class="worker-card__vital-label">체온</div>
                         </div>
                         <div class="worker-card__vital">
-                            <div class="worker-card__vital-value">${worker.heartRate}</div>
+                            <div class="worker-card__vital-value">${worker.heartRate || 0}</div>
                             <div class="worker-card__vital-label">심박수</div>
                         </div>
                     </div>

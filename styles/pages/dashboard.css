@@ -40,10 +40,10 @@
     align-items: flex-start;
     gap: var(--spacing-md);
     padding: var(--spacing-lg);
-    background: var(--theme-card-bg, #2A2A2A);
-    backdrop-filter: none;
+    background: var(--theme-card-bg);
+    backdrop-filter: var(--theme-glass-blur, none);
     border-radius: 8px;
-    border: 1px solid var(--theme-card-border, rgba(85, 102, 136, 0.2));
+    border: 1px solid var(--theme-card-border);
     box-shadow: var(--theme-shadow-sm);
     transition: all 0.2s ease;
 }
@@ -51,7 +51,7 @@
 .stat-card:hover {
     transform: translateY(-2px);
     box-shadow: var(--theme-shadow-md);
-    background: var(--bg-card-hover, #333333);
+    background: var(--theme-bg-tertiary);
 }
 
 .stat-card__icon {
@@ -67,22 +67,22 @@
 
 .stat-card__icon--primary {
     background: #556688;
-    color: #F0F0D0;
+    color: #FFFFFF;
 }
 
 .stat-card__icon--success {
     background: #4A6B4A;
-    color: #F0F0D0;
+    color: #FFFFFF;
 }
 
 .stat-card__icon--warning {
     background: #C87941;
-    color: #F0F0D0;
+    color: #FFFFFF;
 }
 
 .stat-card__icon--error {
     background: #8B3A3A;
-    color: #F0F0D0;
+    color: #FFFFFF;
 }
 
 .stat-card__content {
@@ -91,7 +91,7 @@
 
 .stat-card__label {
     font-size: var(--font-size-sm);
-    color: #A0A0A0;
+    color: var(--theme-text-secondary);
     margin-bottom: var(--spacing-xs);
     font-weight: 600;
 }
@@ -99,7 +99,7 @@
 .stat-card__value {
     font-size: var(--font-size-2xl);
     font-weight: 800;
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
 }
 
 .stat-card__trend {
@@ -155,7 +155,7 @@
 
 .activity-item__time {
     font-size: var(--font-size-xs);
-    color: #707070;
+    color: var(--theme-text-muted);
     margin-top: var(--spacing-xs);
 }
 
@@ -167,10 +167,11 @@
     justify-content: center;
     padding: var(--spacing-2xl);
     text-align: center;
-    background: #2A2A2A;
-    border: 1px dashed rgba(85, 102, 136, 0.3);
+    background: var(--theme-card-bg);
+    border: 1px dashed var(--theme-card-border);
     border-radius: 8px;
     min-height: 300px;
+    backdrop-filter: var(--theme-glass-blur, none);
 }
 
 .empty-state__icon {
@@ -182,13 +183,13 @@
 .empty-state__title {
     font-size: var(--font-size-xl);
     font-weight: 700;
-    color: #F0F0D0;
+    color: var(--theme-text-primary);
     margin-bottom: var(--spacing-sm);
 }
 
 .empty-state__desc {
     font-size: var(--font-size-sm);
-    color: #707070;
+    color: var(--theme-text-muted);
 }
 
 .empty-state__btn {

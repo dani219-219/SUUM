@@ -415,6 +415,31 @@ class WorkerDataService {
     }
 
     /**
+     * 특정 작업자의 바이탈 정보(체온, 심박수) 강제 갱신
+     * (상세 모달 등에서 실제 최신 센서 API 데이터를 불러왔을 때 동기화 용도)
+     */
+    updateWorkerVitals(workerId, temperature, heartRate) {
+        const worker = this.getById(workerId);
+        if (worker) {
+            let changed = false;
+            if (temperature !== null && temperature !== undefined && worker.temperature !== temperature) {
+                worker.temperature = temperature;
+                changed = true;
+            }
+            if (heartRate !== null && heartRate !== undefined && worker.heartRate !== heartRate) {
+                worker.heartRate = heartRate;
+                changed = true;
+            }
+            
+            if (changed) {
+                worker.status = calculateStatus(worker.temperature, worker.heartRate);
+                this.saveToStorage();
+                this.notifyListeners(); // 뒷 배경(WorkerDetail 등) 리렌더링 유발
+            }
+        }
+    }
+
+    /**
      * 실시간 시뮬레이션 시작 (서버 요청 주기를 5분으로 연장)
      */
     startSimulation(interval = 300000) {

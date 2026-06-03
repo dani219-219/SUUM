@@ -21,6 +21,7 @@ import { TeamTabs } from '../components/TeamTabs.js';
 import { AddTeamModal } from '../components/AddTeamModal.js';
 import { AddWorkerModal } from '../components/AddWorkerModal.js';
 import { authService, ROLES } from '../services/authService.js';
+import { themeToggleUI } from '../features/theme/theme-toggle-ui.js';
 
 export class Dashboard {
     constructor(container) {
@@ -68,9 +69,9 @@ export class Dashboard {
         this.container.innerHTML = `
             <div class="app-layout">
                 <header class="app-header">
-                    <div class="app-header__logo">
-                        <span class="app-header__logo-icon">🏭</span>
-                        <span>스마트 안전 모니터링</span>
+                    <div class="app-header__logo" style="display: flex; align-items: center; gap: 12px; cursor: pointer;" onclick="window.location.hash='#/dashboard'">
+                        <img src="assets/icons/SUUM_mark.svg" alt="SUUM Mark" style="height: 32px; filter: var(--theme-logo-filter);">
+                        <img src="assets/icons/SUUM_name.svg" alt="스마트 안전 모니터링" style="height: 24px; filter: var(--theme-logo-filter);">
                     </div>
                     <nav class="app-header__nav">
                         <span class="app-header__user">
@@ -78,6 +79,18 @@ export class Dashboard {
                             <span class="app-header__user-role">${this.getRoleDisplayName(user?.role)}</span>
                         </span>
                         <span class="app-header__time" id="currentTime"></span>
+                        <div id="themeToggleContainer" style="display: flex; align-items: center; margin-right: var(--spacing-sm);">
+                            <style>
+                                #themeToggleContainer .theme-toggle-container {
+                                    position: static;
+                                }
+                                #themeToggleContainer .theme-toggle-btn {
+                                    width: 40px;
+                                    height: 40px;
+                                    box-shadow: var(--theme-shadow-sm);
+                                }
+                            </style>
+                        </div>
                         <button class="btn btn--outline btn--logout" onclick="window.location.hash='#/logout'" title="로그아웃">
                             🚪
                         </button>
@@ -111,11 +124,11 @@ export class Dashboard {
                             </span>
                             
                             <!-- 뷰 모드 토글 (격자/리스트) -->
-                            <div class="view-mode-toggle" style="display: flex; background: rgba(255,255,255,0.05); border-radius: var(--radius-md); padding: 4px; gap: 4px;">
-                                <button class="btn btn--icon" id="viewGridBtn" style="padding: 4px 8px; border-radius: var(--radius-sm); border: none; background: ${this.viewMode === 'grid' ? 'var(--bg-card)' : 'transparent'}; color: ${this.viewMode === 'grid' ? 'var(--text-primary)' : 'var(--text-muted)'}; cursor: pointer;" title="격자 뷰">
+                            <div class="view-mode-toggle" style="display: flex; background: var(--theme-bg-secondary); border-radius: var(--radius-md); padding: 4px; gap: 4px; border: 1px solid var(--theme-card-border);">
+                                <button class="btn btn--icon" id="viewGridBtn" style="padding: 4px 8px; border-radius: var(--radius-sm); border: none; background: ${this.viewMode === 'grid' ? 'var(--theme-card-bg)' : 'transparent'}; color: ${this.viewMode === 'grid' ? 'var(--theme-text-primary)' : 'var(--theme-text-muted)'}; cursor: pointer; box-shadow: ${this.viewMode === 'grid' ? 'var(--theme-shadow-sm)' : 'none'};" title="격자 뷰">
                                     ⊞
                                 </button>
-                                <button class="btn btn--icon" id="viewListBtn" style="padding: 4px 8px; border-radius: var(--radius-sm); border: none; background: ${this.viewMode === 'list' ? 'var(--bg-card)' : 'transparent'}; color: ${this.viewMode === 'list' ? 'var(--text-primary)' : 'var(--text-muted)'}; cursor: pointer;" title="리스트 뷰">
+                                <button class="btn btn--icon" id="viewListBtn" style="padding: 4px 8px; border-radius: var(--radius-sm); border: none; background: ${this.viewMode === 'list' ? 'var(--theme-card-bg)' : 'transparent'}; color: ${this.viewMode === 'list' ? 'var(--theme-text-primary)' : 'var(--theme-text-muted)'}; cursor: pointer; box-shadow: ${this.viewMode === 'list' ? 'var(--theme-shadow-sm)' : 'none'};" title="리스트 뷰">
                                     ☰
                                 </button>
                             </div>
@@ -142,6 +155,12 @@ export class Dashboard {
 
         // 이벤트 바인딩
         this.bindEvents();
+
+        // 테마 토글 렌더링
+        const themeContainer = this.container.querySelector('#themeToggleContainer');
+        if (themeContainer) {
+            themeToggleUI.render(themeContainer);
+        }
 
         // 날씨 정보 비동기 로드
         this.loadWeather();
@@ -297,11 +316,13 @@ export class Dashboard {
         const viewListBtn = this.container.querySelector('#viewListBtn');
         
         if (viewGridBtn && viewListBtn) {
-            viewGridBtn.style.background = mode === 'grid' ? 'var(--bg-card)' : 'transparent';
-            viewGridBtn.style.color = mode === 'grid' ? 'var(--text-primary)' : 'var(--text-muted)';
+            viewGridBtn.style.background = mode === 'grid' ? 'var(--theme-card-bg)' : 'transparent';
+            viewGridBtn.style.color = mode === 'grid' ? 'var(--theme-text-primary)' : 'var(--theme-text-muted)';
+            viewGridBtn.style.boxShadow = mode === 'grid' ? 'var(--theme-shadow-sm)' : 'none';
             
-            viewListBtn.style.background = mode === 'list' ? 'var(--bg-card)' : 'transparent';
-            viewListBtn.style.color = mode === 'list' ? 'var(--text-primary)' : 'var(--text-muted)';
+            viewListBtn.style.background = mode === 'list' ? 'var(--theme-card-bg)' : 'transparent';
+            viewListBtn.style.color = mode === 'list' ? 'var(--theme-text-primary)' : 'var(--theme-text-muted)';
+            viewListBtn.style.boxShadow = mode === 'list' ? 'var(--theme-shadow-sm)' : 'none';
         }
 
         // 그리드 재렌더링
