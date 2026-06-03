@@ -1,0 +1,40 @@
+/**
+ * Login Background - Flat Minimalist Style (Dashboard-inspired)
+ * Charcoal gray solid background with minimal subtle elements
+ */
+
+.login-background {
+    position: absolute;
+    inset: 0;
+    background: #1F1F1F;
+    overflow: hidden;
+}
+
+/* Subtle grid pattern overlay - minimal */
+.login-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        /* Very subtle grid lines */
+        repeating-linear-gradient(0deg,
+            transparent,
+            transparent 59px,
+            rgba(85, 102, 136, 0.04) 59px,
+            rgba(85, 102, 136, 0.04) 60px),
+        repeating-linear-gradient(90deg,
+            transparent,
+            transparent 59px,
+            rgba(85, 102, 136, 0.04) 59px,
+            rgba(85, 102, 136, 0.04) 60px);
+    animation: none;
+}
+
+/* Remove second layer effects */
+.login-background::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: none;
+    animation: none;
+}

@@ -1,0 +1,273 @@
+/**
+ * ============================================
+ * 파일: main.css
+ * 위치: styles/main.css
+ * 역할: 메인 CSS 진입점 - 모든 스타일 import
+ * 연결: index.html에서 로드
+ * ============================================
+ */
+
+/* ========== Base Styles ========== */
+@import url('./base/reset.css');
+@import url('./base/variables.css');
+@import url('./base/typography.css');
+@import url('./base/theme-variables.css');
+
+/* ========== Component Styles ========== */
+@import url('./components/worker-card.css');
+@import url('./components/vitals.css');
+@import url('./components/alerts.css');
+@import url('./components/health-info.css');
+@import url('./components/team-tabs.css');
+@import url('./components/modal.css');
+@import url('./components/heart-rate-monitor.css');
+@import url('./components/temperature-monitor.css');
+
+/* ========== Layout Styles ========== */
+@import url('./layouts/desktop.css');
+@import url('./layouts/mobile.css');
+
+/* ========== Page Styles ========== */
+@import url('./pages/dashboard.css');
+@import url('./pages/login.css');
+@import url('./pages/login/login-light.css');
+
+/* ========== 글로벌 스타일 ========== */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--theme-bg-primary, #fdfdfd);
+    color: var(--theme-text-primary, #333333);
+    font-family: var(--font-family);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease;
+}
+
+#app {
+    min-height: 100vh;
+}
+
+/* ========== 공통 레이아웃 ========== */
+.app-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background: #1F1F1F;
+    backdrop-filter: none;
+    border-bottom: 1px solid rgba(85, 102, 136, 0.2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spacing-lg);
+}
+
+.app-content {
+    flex: 1;
+    margin-top: var(--header-height);
+    padding: var(--spacing-lg);
+    max-width: var(--content-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+/* ========== 헤더 컴포넌트 ========== */
+.app-header__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: #F0F0D0;
+}
+
+.app-header__logo-icon {
+    font-size: var(--font-size-2xl);
+}
+
+.app-header__nav {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.app-header__time {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+    color: #A0A0A0;
+}
+
+.app-header__user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    margin-right: var(--spacing-md);
+}
+
+.app-header__user-name {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: #F0F0D0;
+}
+
+.app-header__user-role {
+    font-size: var(--font-size-xs);
+    color: #707070;
+}
+
+.btn--logout {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+    min-width: auto;
+}
+
+/* ========== 유틸리티 클래스 ========== */
+.hidden {
+    display: none !important;
+}
+
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-sm {
+    gap: var(--spacing-sm);
+}
+
+.gap-md {
+    gap: var(--spacing-md);
+}
+
+.gap-lg {
+    gap: var(--spacing-lg);
+}
+
+.mt-md {
+    margin-top: var(--spacing-md);
+}
+
+.mt-lg {
+    margin-top: var(--spacing-lg);
+}
+
+.mb-md {
+    margin-bottom: var(--spacing-md);
+}
+
+.mb-lg {
+    margin-bottom: var(--spacing-lg);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.w-full {
+    width: 100%;
+}
+
+/* ========== 버튼 ========== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: 10px 24px;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    background: none;
+}
+
+.btn--primary {
+    background: #556688;
+    color: #F0F0D0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn--primary:hover {
+    background: #7788AA;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.btn--outline {
+    border: 1px solid rgba(85, 102, 136, 0.4);
+    background: transparent;
+    color: #F0F0D0;
+    box-shadow: none;
+}
+
+.btn--outline:hover {
+    border-color: #556688;
+    color: #F0F0D0;
+    background: rgba(85, 102, 136, 0.15);
+    transform: translateY(-1px);
+}
+
+.btn--back {
+    color: #A0A0A0;
+}
+
+.btn--back:hover {
+    color: #F0F0D0;
+}
+
+/* ========== 섹션 타이틀 ========== */
+.section-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: #F0F0D0;
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.section-title__icon {
+    font-size: var(--font-size-3xl);
+}
+
+/* ========== 스크롤바 커스텀 ========== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1F1F1F;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3A3A3A;
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #556688;
+}

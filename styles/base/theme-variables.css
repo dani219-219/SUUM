@@ -1,0 +1,118 @@
+/**
+ * ============================================
+ * 파일: theme-variables.css
+ * 위치: styles/base/theme-variables.css
+ * 역할: 다크/라이트 모드별 CSS 변수 정의
+ * 연결: 
+ *   - main.css에서 임포트
+ *   - 모든 컴포넌트에서 CSS 변수 사용
+ * ============================================
+ */
+
+/* ========================================
+   다크모드 테마 - 플랫 미니멀 무광
+   ======================================== */
+:root,
+[data-theme="dark"] {
+    /* 배경 색상 - 단색 차콜 */
+    --theme-bg-primary: #1F1F1F;
+    --theme-bg-secondary: #2A2A2A;
+    --theme-bg-tertiary: #333333;
+
+    /* 카드 배경 - 플랫 */
+    --theme-card-bg: #2A2A2A;
+    --theme-card-border: rgba(85, 102, 136, 0.2);
+
+    /* 텍스트 색상 - 오프화이트/베이지 */
+    --theme-text-primary: #F0F0D0;
+    --theme-text-secondary: #A0A0A0;
+    --theme-text-muted: #707070;
+
+    /* 글래스모피즘 제거 - 플랫 */
+    --theme-glass-bg: #2A2A2A;
+    --theme-glass-border: rgba(85, 102, 136, 0.2);
+    --theme-glass-blur: none;
+
+    /* 그림자 - 미니멀 */
+    --theme-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --theme-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --theme-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.4);
+
+    /* 강조 색상 - 슬레이트 블루 */
+    --theme-accent-primary: #556688;
+    --theme-accent-secondary: #7788AA;
+
+    /* 입력 필드 */
+    --theme-input-bg: #3A3A3A;
+    --theme-input-border: rgba(85, 102, 136, 0.3);
+    --theme-input-text: #F0F0D0;
+
+    /* 버튼 */
+    --theme-btn-bg: #556688;
+    --theme-btn-border: #556688;
+    --theme-btn-text: #F0F0D0;
+    --theme-btn-hover-bg: #7788AA;
+}
+
+/* ========================================
+   라이트모드 테마 (Jelly / Frosted Glass)
+   ======================================== */
+[data-theme="light"] {
+    /* 배경 색상 - 부드러운 회색 (#E5E5E5) (이미지 3 기준) */
+    --theme-bg-primary: #e5e5e5;
+    --theme-bg-secondary: #eeeeee;
+    --theme-bg-tertiary: #f5f5f5;
+
+    /* 카드 배경 - 젤리 글래스모피즘 */
+    --theme-card-bg: rgba(255, 255, 255, 0.55);
+    --theme-card-border: rgba(255, 255, 255, 0.9);
+
+    /* 텍스트 색상 - 어두운 남색 (#0D2750) 가독성 극대화 */
+    --theme-text-primary: #0d2750;
+    --theme-text-secondary: rgba(13, 39, 80, 0.8);
+    --theme-text-muted: rgba(13, 39, 80, 0.5);
+
+    /* 글래스모피즘 & 젤리 효과 */
+    --theme-glass-bg: rgba(255, 255, 255, 0.4);
+    --theme-glass-border: rgba(255, 255, 255, 0.8);
+    --theme-glass-blur: blur(24px) saturate(150%);
+
+    /* 젤리 3D 그림자 (부드러운 양각 효과) - 밝은 배경에 맞춰 조정 */
+    --theme-shadow-sm: 0 4px 10px rgba(13, 39, 80, 0.05), inset 0 2px 5px rgba(255, 255, 255, 1), inset 0 -2px 5px rgba(13, 39, 80, 0.02);
+    --theme-shadow-md: 0 10px 25px rgba(13, 39, 80, 0.06), inset 0 3px 10px rgba(255, 255, 255, 1), inset 0 -3px 10px rgba(13, 39, 80, 0.03);
+    --theme-shadow-lg: 0 20px 50px rgba(13, 39, 80, 0.08), inset 0 4px 18px rgba(255, 255, 255, 1), inset 0 -4px 18px rgba(13, 39, 80, 0.03);
+
+    /* 강조 색상 - 파스텔 무지개 계열 */
+    --theme-accent-primary: #ff9a9e;
+    --theme-accent-secondary: #a1c4fd;
+
+    /* 입력 필드 */
+    --theme-input-bg: rgba(255, 255, 255, 0.7);
+    --theme-input-border: rgba(255, 255, 255, 0.9);
+    --theme-input-text: #0d2750;
+
+    /* 버튼 */
+    --theme-btn-bg: linear-gradient(120deg, #ff9a9e, #a1c4fd);
+    --theme-btn-text: #ffffff;
+
+    /* 젤리 상태 색상 (부드럽게) */
+    --status-normal: #a1c4fd;
+    --status-warning: #fecfef;
+    --status-danger: #ff9a9e;
+}
+
+/* ========================================
+   테마 전환 애니메이션
+   ======================================== */
+* {
+    transition: background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* 애니메이션 제외 요소 (성능 최적화) */
+.no-theme-transition,
+.no-theme-transition * {
+    transition: none !important;
+}

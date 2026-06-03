@@ -1,0 +1,86 @@
+/**
+ * Desktop Layout
+ * PC 화면 레이아웃 (1024px 이상)
+ */
+
+@media screen and (min-width: 1024px) {
+    .layout {
+        display: grid;
+        grid-template-columns: var(--sidebar-width) 1fr;
+        grid-template-rows: var(--header-height) 1fr;
+        min-height: 100vh;
+    }
+
+    .layout--sidebar-collapsed {
+        grid-template-columns: var(--sidebar-collapsed-width) 1fr;
+    }
+
+    .main-content {
+        grid-column: 2;
+        grid-row: 2;
+        padding: var(--spacing-xl);
+        background-color: var(--bg-primary);
+        overflow-y: auto;
+    }
+
+    .content-wrapper {
+        max-width: var(--content-max-width);
+        margin: 0 auto;
+    }
+
+    /* Grid System */
+    .grid {
+        display: grid;
+        gap: var(--spacing-lg);
+    }
+
+    .grid--2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid--3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid--4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .grid--auto {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    /* Dashboard specific layouts */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        gap: var(--spacing-lg);
+    }
+
+    .dashboard-grid__item--wide {
+        grid-column: span 2;
+    }
+
+    .dashboard-grid__item--full {
+        grid-column: span 4;
+    }
+
+    .dashboard-grid__item--tall {
+        grid-row: span 2;
+    }
+
+    /* Sidebar toggle - desktop hidden by default mobile features */
+    .sidebar-toggle {
+        display: none;
+    }
+
+    /* Desktop-only elements */
+    .desktop-only {
+        display: block;
+    }
+
+    .mobile-only {
+        display: none;
+    }
+}

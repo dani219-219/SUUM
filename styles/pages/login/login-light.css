@@ -1,0 +1,242 @@
+/**
+ * ============================================
+ * 파일: login-light.css
+ * 위치: styles/pages/login/login-light.css
+ * 역할: 라이트모드 전용 로그인 화면 스타일
+ * 연결: 
+ *   - main.css에서 임포트
+ *   - [data-theme="light"]일 때만 적용
+ *   - back-ground.jpg 이미지 배경 사용
+ * ============================================
+ */
+
+/* ========================================
+   라이트모드 - 메인 컨테이너 (Jelly Style)
+   ======================================== */
+[data-theme="light"] .login-page {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: #fdfdfd; /* 미니멀 화이트 배경 */
+}
+
+[data-theme="light"] .login-background {
+    display: none;
+}
+
+[data-theme="light"] .login-page::before,
+[data-theme="light"] .login-page::after {
+    display: none;
+}
+
+/* ========================================
+   분할 컨테이너 (중앙 정렬, 젤리 글래스 컨테이너)
+   ======================================== */
+[data-theme="light"] .login-split-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 
+        0 25px 60px rgba(13, 39, 80, 0.12),
+        inset 0 4px 20px rgba(255, 255, 255, 0.9),
+        inset 0 -4px 10px rgba(13, 39, 80, 0.04);
+}
+
+[data-theme="light"] .login-left {
+    background: rgba(225, 232, 245, 0.9); /* 더 진해진 파스텔 블루 틴트 */
+}
+
+[data-theme="light"] .login-right {
+    background: linear-gradient(135deg, rgba(255,124,130,0.18) 0%, rgba(137,180,255,0.22) 50%, rgba(162,224,255,0.18) 100%); /* 채도와 불투명도 증가 */
+    position: relative;
+}
+
+[data-theme="light"] .login-right::before {
+    display: none;
+}
+
+/* ========================================
+   타이틀 (어두운 남색 텍스트로 가독성 개선)
+   ======================================== */
+[data-theme="light"] .login-title,
+[data-theme="light"] .app-header__logo {
+    color: #0d2750;
+    font-weight: 800;
+    text-shadow: 0 4px 10px rgba(13, 39, 80, 0.1);
+    letter-spacing: 2px;
+}
+
+[data-theme="light"] .login-subtitle {
+    color: #0d2750;
+    opacity: 0.8;
+    font-weight: 600;
+}
+
+/* ========================================
+   입력 필드 (둥근 젤리 스타일)
+   ======================================== */
+[data-theme="light"] .form-label {
+    color: #0d2750; /* 어두운 남색으로 가독성 극대화 */
+    font-weight: 700;
+}
+
+[data-theme="light"] .form-input,
+[data-theme="light"] .access-code-box {
+    background: rgba(255, 255, 255, 0.85); /* 텍스트 시인성을 위해 불투명도 증가 */
+    border: 2px solid rgba(255, 255, 255, 1);
+    color: #0d2750; /* 텍스트 시인성 확보 */
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 
+        0 4px 15px rgba(13, 39, 80, 0.03),
+        inset 0 2px 5px rgba(255, 255, 255, 1),
+        inset 0 -2px 5px rgba(13, 39, 80, 0.02);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] .form-input:focus,
+[data-theme="light"] .access-code-box:focus {
+    transform: scale(1.02);
+    border-color: #a1c4fd;
+    background: #ffffff;
+    box-shadow: 
+        0 8px 25px rgba(161, 196, 253, 0.4),
+        inset 0 2px 5px rgba(255, 255, 255, 1);
+    outline: none;
+}
+
+[data-theme="light"] .form-input::placeholder {
+    color: rgba(13, 39, 80, 0.4); /* 어두운 남색 계열 플레이스홀더 */
+    font-weight: 500;
+}
+
+/* ========================================
+   버튼 (무지개 그라데이션, 부드럽게)
+   ======================================== */
+[data-theme="light"] .btn--login,
+[data-theme="light"] .btn-primary {
+    background: linear-gradient(120deg, #ff7c82, #89b4ff, #a2e0ff);
+    background-size: 200% auto;
+    border-color: transparent;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 
+        0 12px 30px rgba(137, 180, 255, 0.5),
+        inset 0 2px 10px rgba(255, 255, 255, 0.6);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: rainbowShift 8s infinite linear;
+}
+
+[data-theme="light"] .btn--login:hover,
+[data-theme="light"] .btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 15px 35px rgba(161, 196, 253, 0.5),
+        inset 0 2px 10px rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="light"] .btn__text {
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   체크박스 및 기타 텍스트
+   ======================================== */
+[data-theme="light"] .checkbox-text {
+    color: #0d2750;
+    font-weight: 600;
+}
+
+[data-theme="light"] .custom-checkbox {
+    border: 2px solid #a1c4fd;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] input[type="checkbox"]:checked + .custom-checkbox {
+    background: linear-gradient(120deg, #ff9a9e, #a1c4fd);
+    border-color: transparent;
+}
+
+[data-theme="light"] .login-footer p {
+    color: #0d2750;
+    font-weight: 500;
+    opacity: 0.7;
+}
+
+[data-theme="light"] .password-toggle {
+    color: #0d2750;
+    opacity: 0.6;
+}
+
+[data-theme="light"] .password-toggle:hover {
+    color: #a1c4fd;
+    opacity: 1;
+}
+
+/* ========================================
+   우측 영상/로고 영역 (3D 젤리 조각 효과)
+   ======================================== */
+[data-theme="light"] .login-logo-image {
+    box-sizing: border-box;
+    /* 테두리와 그림자를 제거하여 배경과 일체화 */
+    border: none;
+    box-shadow: none;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05)); /* 부드러운 로고 자체 그림자만 남김 */
+    transition: all 0.5s ease;
+    transform: none; /* 평면적으로 배경에 밀착 */
+}
+
+[data-theme="light"] .login-logo-image:hover {
+    transform: scale(1.05); /* 부드러운 확대 효과만 유지 */
+}
+
+/* ========================================
+   에러 메시지
+   ======================================== */
+[data-theme="light"] .login-error {
+    background: rgba(255, 154, 158, 0.1);
+    border: 2px solid #ff9a9e;
+    border-radius: 16px;
+    color: #ff5252;
+    font-weight: 600;
+}
+
+/* ========================================
+   테스트 계정 안내
+   ======================================== */
+[data-theme="light"] .login-help__summary {
+    color: #0d2750;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    padding: 12px 20px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 10px rgba(13, 39, 80, 0.03);
+}
+
+[data-theme="light"] .login-help__content {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    box-shadow: 0 10px 30px rgba(13, 39, 80, 0.08);
+}
+
+[data-theme="light"] .account-table th {
+    background: rgba(161, 196, 253, 0.15);
+    color: #0d2750;
+    font-weight: 700;
+}
+
+[data-theme="light"] .account-table td {
+    color: #0d2750;
+    font-weight: 500;
+    opacity: 0.9;
+}

@@ -1,0 +1,203 @@
+/**
+ * Login Layout - Containers & Structure
+ * 다크모드 전용 스타일 - Flat Minimalist (Dashboard-inspired)
+ * 연결: login-light.css에서 라이트모드 스타일 정의
+ */
+
+/* ========================================
+   다크모드 - 로그인 페이지
+   ======================================== */
+[data-theme="dark"] .login-page {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: #1F1F1F;
+}
+
+/* Split Container (Left/Right) */
+[data-theme="dark"] .login-split-container {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+    max-width: 1400px;
+    height: 90vh;
+    min-height: 700px;
+    background: #1F1F1F;
+    backdrop-filter: none;
+    border-radius: 16px;
+    border: 1px solid rgba(85, 102, 136, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+/* Left Side - Form Area */
+[data-theme="dark"] .login-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-3xl);
+    background: #1F1F1F;
+}
+
+[data-theme="dark"] .login-form-wrapper {
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Right Side - Logo Area */
+[data-theme="dark"] .login-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl);
+    background: #556688;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .login-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(85, 102, 136, 0.3) 0%, rgba(119, 136, 170, 0.1) 100%);
+    animation: none;
+}
+
+[data-theme="dark"] .login-logo-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+[data-theme="dark"] .login-logo-image {
+    filter: brightness(0) invert(1) sepia(0.1) saturate(0.5) hue-rotate(30deg);
+    opacity: 0.9;
+    animation: logoFloat 4s ease-in-out infinite;
+}
+
+
+
+/* Header Section */
+[data-theme="dark"] .login-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+[data-theme="dark"] .login-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #F0F0D0;
+    -webkit-text-fill-color: #F0F0D0;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 3px;
+}
+
+[data-theme="dark"] .login-subtitle {
+    font-size: var(--font-size-base);
+    color: #F0F0D0;
+    font-weight: 400;
+}
+
+/* Footer Section */
+[data-theme="dark"] .login-footer {
+    margin-top: var(--spacing-lg);
+    text-align: center;
+}
+
+[data-theme="dark"] .login-footer p {
+    font-size: var(--font-size-xs);
+    color: #A0A0A0;
+}
+
+/* ========================================
+   공통 스타일 (테마 무관)
+   ======================================== */
+.login-split-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+    max-width: 1400px;
+    height: 90vh;
+    min-height: 700px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.login-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-3xl);
+}
+
+.login-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-logo-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.login-logo-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.login-form-wrapper {
+    width: 100%;
+    max-width: 450px;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.login-footer {
+    margin-top: var(--spacing-lg);
+    text-align: center;
+}
+
+/* 애니메이션 (공통) */
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}

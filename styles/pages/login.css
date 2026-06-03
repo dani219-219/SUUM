@@ -1,0 +1,19 @@
+/**
+ * Login Page Styles - Main Entry Point
+ * All login-related styles are modularized for easier maintenance
+ */
+
+/* Import Modular Stylesheets - MUST BE AT TOP */
+@import url('./login/login-animations.css');
+@import url('./login/login-background.css');
+@import url('./login/login-layout.css');
+@import url('./login/login-form.css');
+
+/* CSS Variables - Flat Minimalist Palette (Dashboard-inspired) */
+:root {
+    --aegis-primary: #556688;
+    --aegis-secondary: #7788AA;
+    --aegis-accent: #F0F0D0;
+    --aegis-dark: #1F1F1F;
+    --aegis-glow: rgba(85, 102, 136, 0.3);
+}

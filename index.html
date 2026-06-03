@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+
+<head>
+    <!--
+    ============================================
+    파일: index.html
+    위치: Control_center/index.html
+    역할: 메인 진입점 HTML
+    연결: 
+      - styles/main.css (스타일)
+      - js/main.js (JavaScript 진입점)
+    ============================================
+    -->
+
+    <!-- 테마 플리커 방지 스크립트 (가장 먼저 실행) -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('aegis-theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="스마트 안전 모니터링 시스템 - 작업자 체온/심전도 실시간 모니터링">
+    <meta name="theme-color" content="#0a0e1a">
+
+    <title>스마트 안전 모니터링</title>
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏭</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <!-- 앱 루트 -->
+    <div id="app">
+        <!-- 로딩 상태 -->
+        <div
+            style="min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1rem;">
+            <div style="font-size: 3rem;">🏭</div>
+            <div style="color: #00fff2; font-size: 1.25rem;">스마트 안전 모니터링</div>
+            <div style="color: rgba(255,255,255,0.5); font-size: 0.875rem;">로딩 중...</div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

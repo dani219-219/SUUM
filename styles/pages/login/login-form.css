@@ -1,0 +1,248 @@
+/**
+ * Login Form Elements - Inputs, Buttons, Labels
+ * Flat, Minimalist Style (Dashboard-inspired)
+ */
+
+/* Form Container */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Form Group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+/* Labels */
+.form-label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: #F0F0D0;
+}
+
+/* Input Fields */
+.login-form .form-input {
+    width: 100%;
+    padding: 14px 18px;
+    background: #808080;
+    backdrop-filter: none;
+    border: 1px solid rgba(85, 102, 136, 0.3);
+    border-radius: 8px;
+    color: #F0F0D0;
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    transition: all var(--transition-fast);
+}
+
+.login-form .form-input::placeholder {
+    color: rgba(240, 240, 208, 0.4);
+}
+
+.login-form .form-input:focus {
+    outline: none;
+    border-color: #556688;
+    background: #909090;
+    box-shadow: 0 0 0 2px rgba(85, 102, 136, 0.3);
+}
+
+/* Checkbox */
+.form-group--checkbox {
+    margin-top: calc(var(--spacing-sm) * -1);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #556688;
+}
+
+.checkbox-text {
+    font-size: var(--font-size-sm);
+    color: #F0F0D0;
+}
+
+/* Password Toggle */
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-wrapper .form-input {
+    padding-right: 50px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #F0F0D0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-md);
+}
+
+.password-toggle:hover {
+    color: #7788AA;
+    background: rgba(85, 102, 136, 0.15);
+}
+
+/* Error Message */
+.login-error {
+    padding: var(--spacing-md);
+    background: rgba(255, 59, 92, 0.1);
+    border: 1px solid var(--neon-red);
+    border-radius: var(--radius-md);
+    color: var(--neon-red);
+    font-size: var(--font-size-sm);
+    text-align: center;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.login-error--visible {
+    opacity: 1;
+    max-height: 100px;
+}
+
+.login-error--success {
+    background: rgba(85, 102, 136, 0.15);
+    border-color: #556688;
+    color: #F0F0D0;
+}
+
+/* Login Button */
+.btn--login {
+    width: 100%;
+    padding: 16px var(--spacing-lg);
+    background: #556688;
+    border: none;
+    border-radius: 8px;
+    color: #F0F0D0;
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn--login::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: none;
+    border-radius: 8px;
+    z-index: -1;
+    opacity: 0;
+    filter: none;
+    transition: opacity var(--transition-fast);
+}
+
+.btn--login:hover::before {
+    opacity: 0;
+}
+
+.btn--login:hover {
+    background: #7788AA;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(85, 102, 136, 0.3);
+}
+
+.btn--login:active {
+    transform: translateY(0);
+}
+
+.btn--login:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Help Section (Test Accounts) */
+.login-help {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(85, 102, 136, 0.15);
+}
+
+.login-help__details {
+    cursor: pointer;
+}
+
+.login-help__summary {
+    font-size: var(--font-size-sm);
+    color: #F0F0D0;
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    background: transparent;
+    border: 1px solid rgba(85, 102, 136, 0.3);
+}
+
+.login-help__summary:hover {
+    color: #F0F0D0;
+    background: rgba(85, 102, 136, 0.15);
+    border-color: #556688;
+}
+
+.login-help__summary::marker {
+    display: none;
+}
+
+.login-help__content {
+    margin-top: var(--spacing-md);
+    animation: slideDown 0.3s ease;
+}
+
+/* Account Table */
+.account-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-xs);
+}
+
+.account-table th {
+    padding: var(--spacing-sm);
+    background: rgba(85, 102, 136, 0.2);
+    border: 1px solid rgba(85, 102, 136, 0.15);
+    color: #F0F0D0;
+    font-weight: 600;
+}
+
+.account-table td {
+    padding: var(--spacing-sm);
+    border: 1px solid rgba(85, 102, 136, 0.15);
+    color: #A0A0A0;
+    text-align: center;
+}
+
+.account-table tr:hover td {
+    background: rgba(85, 102, 136, 0.1);
+}

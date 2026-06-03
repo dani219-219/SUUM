@@ -1,0 +1,269 @@
+/**
+ * ============================================
+ * 파일: heart-rate-monitor.css
+ * 위치: styles/components/heart-rate-monitor.css
+ * 역할: Apple Watch 스타일 심박수 모니터 컴포넌트 스타일
+ * 연결: main.css에서 import, HeartRateMonitor.js에서 사용
+ * 
+ * 디자인 기준: image_0.png (Apple Watch 심박수 화면)
+ *   - 검은색 배경 (#000)
+ *   - 빨간색 강조 (#FF3B30)
+ *   - SF Pro 스타일 타이포그래피
+ * ============================================
+ */
+
+/* ========== 컨테이너 ========== */
+.hrm {
+    background: #000000;
+    border-radius: 20px;
+    padding: 20px;
+    color: #FFFFFF;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    position: relative;
+    overflow: hidden;
+    max-width: 400px;
+    margin: 0 auto;
+
+    /* 미세한 그림자로 카드 분리감 */
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ========== 상단 헤더: ‹ Current / 시간 ========== */
+.hrm__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.hrm__nav {
+    color: #FF3B30;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.hrm__nav-arrow {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.hrm__clock {
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ========== 그래프 영역 ========== */
+.hrm__graph-area {
+    margin: 8px 0 16px;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hrm__graph-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.hrm__graph-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Y축 최대/최소 레이블 (우측) */
+.hrm__y-labels {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    pointer-events: none;
+}
+
+.hrm__y-max,
+.hrm__y-min {
+    color: #FF3B30;
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+/* 현재 시점 흰색 점 애니메이션 (부드러운 펄스) */
+.hrm__current-dot {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+    animation: hrm-dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes hrm-dot-pulse {
+    0%, 100% {
+        opacity: 1;
+        r: 3.5;
+    }
+    50% {
+        opacity: 0.7;
+        r: 5;
+    }
+}
+
+/* 데이터 없음 오버레이 */
+.hrm__no-data-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hrm__no-data-overlay span {
+    color: #8E8E93;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ========== 하단 상세 정보 ========== */
+.hrm__details {
+    text-align: center;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hrm__label {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+
+/* BPM 행: 큰 숫자 + 하트 아이콘 + BPM 텍스트 */
+.hrm__bpm-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.hrm__bpm-number {
+    font-size: 56px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -1px;
+}
+
+.hrm__bpm-heart {
+    display: flex;
+    align-items: center;
+    align-self: center;
+}
+
+.hrm__heart-icon {
+    animation: hrm-heartbeat 1s ease-in-out infinite;
+    filter: drop-shadow(0 0 6px rgba(255, 59, 48, 0.4));
+}
+
+@keyframes hrm-heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    15% {
+        transform: scale(1.2);
+    }
+    30% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.1);
+    }
+    60% {
+        transform: scale(1);
+    }
+}
+
+.hrm__bpm-unit {
+    font-size: 22px;
+    font-weight: 600;
+    color: #FF3B30;
+    align-self: center;
+}
+
+/* 직전 기록 */
+.hrm__prev-record {
+    color: #FF3B30;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* ========== 로딩 상태 ========== */
+.hrm__loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 30px 0;
+}
+
+.hrm__loading span {
+    color: #8E8E93;
+    font-size: 13px;
+}
+
+.hrm__loading-pulse {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FF3B30 0%, transparent 70%);
+    animation: hrm-loading-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes hrm-loading-pulse {
+    0%, 100% {
+        transform: scale(0.8);
+        opacity: 0.4;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* ========== 반응형 ========== */
+@media (max-width: 480px) {
+    .hrm {
+        border-radius: 16px;
+        padding: 16px;
+    }
+
+    .hrm__bpm-number {
+        font-size: 44px;
+    }
+
+    .hrm__bpm-unit {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 768px) {
+    .hrm {
+        max-width: 420px;
+    }
+}

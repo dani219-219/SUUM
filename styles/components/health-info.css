@@ -1,0 +1,150 @@
+/**
+ * ============================================
+ * 파일: health-info.css
+ * 위치: styles/components/health-info.css
+ * 역할: 작업자 건강 정보 패널 스타일 - 플랫 미니멀 무광
+ * 연결: main.css에서 import, WorkerDetail.js에서 사용
+ * ============================================
+ */
+
+/* 건강 정보 패널 - 플랫 */
+.health-panel {
+    background: #2A2A2A;
+    border-radius: 8px;
+    border: 1px solid rgba(85, 102, 136, 0.2);
+    padding: var(--spacing-lg);
+}
+
+.health-panel__title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: #F0F0D0;
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.health-panel__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.health-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: rgba(85, 102, 136, 0.08);
+    border-radius: 6px;
+}
+
+.health-item__icon {
+    font-size: var(--font-size-2xl);
+    line-height: 1;
+}
+
+.health-item__content {
+    flex: 1;
+}
+
+.health-item__label {
+    font-size: var(--font-size-xs);
+    color: #707070;
+    margin-bottom: var(--spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.health-item__value {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: #F0F0D0;
+}
+
+/* 혈액형 특별 스타일 - 무광 레드 */
+.health-item--blood .health-item__value {
+    color: #B04040;
+    font-family: var(--font-family-mono);
+}
+
+/* 지병 리스트 */
+.health-item--conditions .health-item__value {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.condition-tag {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: rgba(200, 121, 65, 0.1);
+    border: 1px solid rgba(200, 121, 65, 0.25);
+    border-radius: 4px;
+    font-size: var(--font-size-sm);
+    color: #C87941;
+}
+
+.condition-tag--severe {
+    background: rgba(139, 58, 58, 0.1);
+    border-color: rgba(139, 58, 58, 0.25);
+    color: #B04040;
+}
+
+/* 긴급연락처 - 슬레이트 블루 */
+.health-item--emergency .health-item__value {
+    color: #7788AA;
+}
+
+.emergency-call-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(85, 102, 136, 0.15);
+    border: 1px solid rgba(85, 102, 136, 0.3);
+    border-radius: 6px;
+    color: #7788AA;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.emergency-call-btn:hover {
+    background: rgba(85, 102, 136, 0.25);
+    border-color: #556688;
+}
+
+/* 지병 경고 메시지 */
+.health-warning {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: rgba(139, 58, 58, 0.1);
+    border: 1px solid rgba(139, 58, 58, 0.25);
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+}
+
+.health-warning__icon {
+    font-size: var(--font-size-xl);
+    color: #B04040;
+}
+
+.health-warning__content {
+    flex: 1;
+}
+
+.health-warning__title {
+    font-weight: 600;
+    color: #B04040;
+    margin-bottom: var(--spacing-xs);
+}
+
+.health-warning__message {
+    font-size: var(--font-size-sm);
+    color: #A0A0A0;
+}

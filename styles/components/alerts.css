@@ -1,0 +1,222 @@
+/**
+ * ============================================
+ * 파일: alerts.css
+ * 위치: styles/components/alerts.css
+ * 역할: 경고 배너 및 재난문자 스타일 - 플랫 미니멀 무광
+ * 연결: main.css에서 import, AlertBanner.js에서 사용
+ * ============================================
+ */
+
+/* 작업자 경고 배너 - 플랫 */
+.alert-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: #2A2A2A;
+    backdrop-filter: none;
+    border-radius: 8px;
+    border: 1px solid rgba(85, 102, 136, 0.2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-bottom: var(--spacing-lg);
+    animation: slide-in 0.3s ease;
+}
+
+.alert-banner--warning {
+    background: rgba(200, 121, 65, 0.1);
+    border-color: rgba(200, 121, 65, 0.3);
+}
+
+.alert-banner--danger {
+    background: rgba(139, 58, 58, 0.1);
+    border-color: rgba(139, 58, 58, 0.3);
+}
+
+.alert-banner__icon {
+    font-size: var(--font-size-2xl);
+}
+
+.alert-banner__content {
+    flex: 1;
+}
+
+.alert-banner__title {
+    font-weight: 600;
+    color: #F0F0D0;
+    margin-bottom: var(--spacing-xs);
+}
+
+.alert-banner__message {
+    font-size: var(--font-size-sm);
+    color: #A0A0A0;
+}
+
+.alert-banner__count {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    font-family: var(--font-family-mono);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+.alert-banner--warning .alert-banner__count {
+    color: #C87941;
+}
+
+.alert-banner--danger .alert-banner__count {
+    color: #B04040;
+}
+
+/* 재난문자 스크롤 배너 - 무광 다크 레드 */
+.disaster-alert {
+    background: #8B3A3A;
+    border-radius: 8px;
+    border: 1px solid rgba(139, 58, 58, 0.5);
+    backdrop-filter: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    padding: var(--spacing-sm) 0;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: var(--spacing-md);
+}
+
+.disaster-alert__label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spacing-md);
+    background: #6B2A2A;
+    color: #F0F0D0;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    border-radius: 8px 0 0 8px;
+    z-index: 1;
+}
+
+.disaster-alert__content {
+    display: flex;
+    padding-left: 100px;
+    animation: scroll-text 20s linear infinite;
+    white-space: nowrap;
+}
+
+.disaster-alert__message {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: 0 var(--spacing-xl);
+    color: #F0F0D0;
+    font-size: var(--font-size-sm);
+}
+
+.disaster-alert__icon {
+    color: #F0F0D0;
+}
+
+/* 날씨 위젯 - 플랫 */
+.weather-widget {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    background: #2A2A2A;
+    backdrop-filter: none;
+    border-radius: 8px;
+    border: 1px solid rgba(85, 102, 136, 0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: var(--spacing-lg);
+    transition: all 0.2s ease;
+}
+
+.weather-widget:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: #333333;
+}
+
+.weather-widget__temp {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+}
+
+.weather-widget__temp-value {
+    font-size: var(--font-size-4xl);
+    font-weight: 800;
+    font-family: var(--font-family-mono);
+    color: #F0F0D0;
+    line-height: 1;
+}
+
+.weather-widget__temp-unit {
+    font-size: var(--font-size-xl);
+    color: #A0A0A0;
+    font-weight: 600;
+}
+
+.weather-widget__details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.weather-widget__detail {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: #A0A0A0;
+}
+
+.weather-widget__status {
+    margin-left: auto;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 6px;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    border: 1px solid rgba(85, 102, 136, 0.2);
+    box-shadow: none;
+}
+
+.weather-widget__status--normal {
+    background: rgba(85, 102, 136, 0.15);
+    color: #7788AA;
+}
+
+.weather-widget__status--warning {
+    background: rgba(200, 121, 65, 0.15);
+    color: #C87941;
+}
+
+.weather-widget__status--danger {
+    background: rgba(139, 58, 58, 0.15);
+    color: #B04040;
+}
+
+/* 모바일 대응 */
+@media (max-width: 600px) {
+    .weather-widget {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .weather-widget__status {
+        margin-left: 0;
+        margin-top: var(--spacing-md);
+        width: 100%;
+        text-align: center;
+    }
+
+    .disaster-alert__label {
+        font-size: var(--font-size-xs);
+        padding: 0 var(--spacing-sm);
+    }
+
+    .disaster-alert__content {
+        padding-left: 80px;
+    }
+}

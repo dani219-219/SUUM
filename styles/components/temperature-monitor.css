@@ -1,0 +1,239 @@
+/**
+ * ============================================
+ * 파일: temperature-monitor.css
+ * 위치: styles/components/temperature-monitor.css
+ * 역할: Apple Watch 스타일 체온 모니터 컴포넌트 스타일
+ * 연결: main.css에서 import, TemperatureMonitor.js에서 사용
+ * 
+ * 디자인: HeartRateMonitor와 동일 구조, 오렌지(#FF9500) 강조색
+ * ============================================
+ */
+
+/* ========== 컨테이너 ========== */
+.tmp {
+    background: #000000;
+    border-radius: 20px;
+    padding: 20px;
+    color: #FFFFFF;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    position: relative;
+    overflow: hidden;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ========== 상단 헤더 ========== */
+.tmp__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.tmp__nav {
+    color: #FF9500;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.tmp__nav-arrow {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.tmp__clock {
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ========== 그래프 영역 ========== */
+.tmp__graph-area {
+    margin: 8px 0 16px;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tmp__graph-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.tmp__graph-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Y축 레이블 */
+.tmp__y-labels {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    pointer-events: none;
+}
+
+.tmp__y-max,
+.tmp__y-min {
+    color: #FF9500;
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+/* 현재 시점 흰색 점 */
+.tmp__current-dot {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+    animation: tmp-dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes tmp-dot-pulse {
+    0%, 100% {
+        opacity: 1;
+        r: 3.5;
+    }
+    50% {
+        opacity: 0.7;
+        r: 5;
+    }
+}
+
+/* 데이터 없음 오버레이 */
+.tmp__no-data-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tmp__no-data-overlay span {
+    color: #8E8E93;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ========== 하단 상세 정보 ========== */
+.tmp__details {
+    text-align: center;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tmp__label {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+
+.tmp__value-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.tmp__value-number {
+    font-size: 56px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -1px;
+}
+
+.tmp__value-icon {
+    font-size: 28px;
+    align-self: center;
+}
+
+.tmp__value-unit {
+    font-size: 22px;
+    font-weight: 600;
+    color: #FF9500;
+    align-self: center;
+}
+
+/* 직전 기록 */
+.tmp__prev-record {
+    color: #FF9500;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* ========== 로딩 상태 ========== */
+.tmp__loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 30px 0;
+}
+
+.tmp__loading span {
+    color: #8E8E93;
+    font-size: 13px;
+}
+
+.tmp__loading-pulse {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FF9500 0%, transparent 70%);
+    animation: tmp-loading-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes tmp-loading-pulse {
+    0%, 100% {
+        transform: scale(0.8);
+        opacity: 0.4;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* ========== 반응형 ========== */
+@media (max-width: 480px) {
+    .tmp {
+        border-radius: 16px;
+        padding: 16px;
+    }
+
+    .tmp__value-number {
+        font-size: 44px;
+    }
+
+    .tmp__value-unit {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 768px) {
+    .tmp {
+        max-width: 420px;
+    }
+}

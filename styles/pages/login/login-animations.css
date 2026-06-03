@@ -1,0 +1,56 @@
+/**
+ * Login Animations & Keyframes
+ * Flat, minimalist - subtle and refined
+ */
+
+/* Background Pulse Animation - very subtle */
+@keyframes linesPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.95;
+    }
+}
+
+/* Background Lines Shift Animation - disabled for flat style */
+@keyframes linesShift {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+
+/* Logo Rotating Glow - removed for flat style */
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Logo Float Animation - gentle, minimal */
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Slide Down Animation (for help section) */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
